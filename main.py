@@ -21,6 +21,7 @@ class MyWindowClass(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         model = QtWidgets.QFileSystemModel()
         model.setRootPath(path_of_me)
+        self.label.setText(path_of_me)
         self.treeView.setModel(model)
         self.treeView.setRootIndex(model.index(path_of_me))
         self.treeView.hideColumn(1)
@@ -30,8 +31,14 @@ class MyWindowClass(QtWidgets.QMainWindow, Ui_MainWindow):
         self.show()
 
     def test(self, signal):
-        file_path=self.model().filePath(signal)
-        print(file_path)
+        file_path=self.treeView.model().filePath(signal)
+        try:
+            with open(file_path, 'r+') as currentFile:
+                self.textEdit.setText(currentFile.read())
+
+        except Exception as e:
+            print(e)
+
 
 
 
