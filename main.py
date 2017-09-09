@@ -12,6 +12,7 @@ from ui_nebula import Ui_MainWindow
 - add file tracker
 """
 
+
 software_version = "0.1"
 path_of_me = os.path.dirname(os.path.abspath(sys.argv[0]))
 
