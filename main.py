@@ -2,8 +2,8 @@ import platform
 import sys
 import os
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.Qsci import QsciScintilla, QsciLexerPython
-from ui_nebula import Ui_MainWindow
+from ui_files.ui_nebula import Ui_MainWindow
+from LexerQsci import Editor
 
 """TODO 
 - add git
@@ -29,13 +29,19 @@ class MyWindowClass(QtWidgets.QMainWindow, Ui_MainWindow):
         self.treeView.hideColumn(2)
         self.treeView.hideColumn(3)
         self.treeView.doubleClicked.connect(self.test)
+
+        self.QSciEditor = Editor()
+        self.gridLayout.addWidget(self.QSciEditor)
+
         self.show()
 
     def test(self, signal):
         file_path=self.treeView.model().filePath(signal)
+
         try:
-            with open(file_path, 'r+') as currentFile:
-                self.textEdit.setText(currentFile.read())
+            if os.path.isfile(file_path):
+                with open(file_path, 'r+') as currentFile:
+                    self.QSciEditor.setText(currentFile.read())
 
         except Exception as e:
             print(e)
