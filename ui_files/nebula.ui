@@ -89,18 +89,179 @@ color:white;
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>30</height>
+        <height>50</height>
        </size>
       </property>
       <property name="maximumSize">
        <size>
         <width>16777215</width>
-        <height>30</height>
+        <height>50</height>
        </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton:hover{
+       color:rgb(224,224,224);
+		background:rgb(24,39,45);
+}
+QPushButton {
+        border:1px solid rgb(64,75,80);
+        border-radius: 2px;
+        padding: 5px 5px 2px 5px;
+        background:rgb(44,59,65);
+        color: rgb(240,240,240);
+        height: 30px;
+}
+QPushButton:pressed {
+        background: rgb();
+        padding-top: 2px;
+        padding-left: 4px;
+}
+QPushButton:pressed {
+        background: rgb();
+        padding-top: 2px;
+        padding-left: 4px;
+}
+QPushButton:disabled{
+        background: rgb(34,45,50);
+        padding-top: 2px;
+        padding-left: 4px;
+		color: rgb(100,100,100);
+}</string>
       </property>
       <property name="title">
        <string/>
       </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="pushButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Run</string>
+         </property>
+         <property name="icon">
+          <iconset resource="rsrcs.qrc">
+           <normaloff>:/images/resources/run.png</normaloff>:/images/resources/run.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Clean</string>
+         </property>
+         <property name="icon">
+          <iconset resource="rsrcs.qrc">
+           <normaloff>:/images/resources/clean.png</normaloff>:/images/resources/clean.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_4">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Install</string>
+         </property>
+         <property name="icon">
+          <iconset resource="rsrcs.qrc">
+           <normaloff>:/images/resources/install.png</normaloff>:/images/resources/install.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_3">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Debug</string>
+         </property>
+         <property name="icon">
+          <iconset resource="rsrcs.qrc">
+           <normaloff>:/images/resources/debug.png</normaloff>:/images/resources/debug.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
      </widget>
     </item>
     <item row="1" column="2">
@@ -197,6 +358,8 @@ border:2px solid white;
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="rsrcs.qrc"/>
+ </resources>
  <connections/>
 </ui>

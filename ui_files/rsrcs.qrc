@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="images">
+    <file>resources/install.png</file>
+    <file>resources/clean.png</file>
+    <file>resources/debug.png</file>
+    <file>resources/run.png</file>
+  </qresource>
+</RCC>
