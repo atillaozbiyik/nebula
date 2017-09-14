@@ -30,16 +30,22 @@ class MyWindowClass(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         model = QtWidgets.QFileSystemModel()
         model.setRootPath(path_of_me)
-        self.label.setText(path_of_me)
+
+
+        self.label.setText(os.path.basename(path_of_me))
         self.treeView.setModel(model)
         self.treeView.setRootIndex(model.index(path_of_me))
         self.treeView.hideColumn(1)
         self.treeView.hideColumn(2)
         self.treeView.hideColumn(3)
+        self.treeView.setHeaderHidden(True)
         self.treeView.doubleClicked.connect(self.test)
 
         self.QSciEditor = Editor()
-        self.gridLayout.addWidget(self.QSciEditor)
+        # self.gridLayout.addWidget(self.QSciEditor)
+        self.editorLayout1 = QtWidgets.QGridLayout(self.tab1)
+        self.editorLayout1.setObjectName("editorLayout1")
+        self.editorLayout1.addWidget(self.QSciEditor)
 
         self.show()
 
@@ -50,6 +56,8 @@ class MyWindowClass(QtWidgets.QMainWindow, Ui_MainWindow):
             if os.path.isfile(file_path):
                 with open(file_path, 'r+') as currentFile:
                     self.QSciEditor.setText(currentFile.read())
+                    _translate = QtCore.QCoreApplication.translate
+                    self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab1), _translate("MainWindow", file_path.split("/")[-1] ))
 
         except Exception as e:
             print(e)

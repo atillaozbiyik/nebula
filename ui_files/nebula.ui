@@ -292,7 +292,17 @@ border:2px solid white;
       <property name="title">
        <string/>
       </property>
-      <layout class="QGridLayout" name="gridLayout"/>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QTabWidget" name="tabWidget">
+         <widget class="QWidget" name="tab1">
+          <attribute name="title">
+           <string>Untitled</string>
+          </attribute>
+         </widget>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </item>
     <item row="2" column="0" colspan="3">
