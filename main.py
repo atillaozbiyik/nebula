@@ -9,8 +9,8 @@ import sys
 import os
 from PyQt5 import QtCore, QtGui, QtWidgets
 from ui_files.ui_nebula import Ui_MainWindow
-from LexerQsci import Editor
-
+# from LexerQsci import Editor
+from tabClass import tabEditor
 """TODO
 - add git
 - add minimap
@@ -24,6 +24,8 @@ path_of_me = os.path.dirname(os.path.abspath(sys.argv[0]))
 
 
 class MyWindowClass(QtWidgets.QMainWindow, Ui_MainWindow):
+
+    tabs = []
 
     def __init__(self):
         QtWidgets.QMainWindow.__init__(self)
@@ -39,36 +41,60 @@ class MyWindowClass(QtWidgets.QMainWindow, Ui_MainWindow):
         self.treeView.hideColumn(2)
         self.treeView.hideColumn(3)
         self.treeView.setHeaderHidden(True)
-        self.treeView.doubleClicked.connect(self.test)
+        self.treeView.doubleClicked.connect(self.tabHandler)
 
-        self.QSciEditor = Editor()
-        # self.gridLayout.addWidget(self.QSciEditor)
-        self.editorLayout1 = QtWidgets.QGridLayout(self.tab1)
-        self.editorLayout1.setObjectName("editorLayout1")
-        self.editorLayout1.addWidget(self.QSciEditor)
+        self.tabWidget.tabCloseRequested.connect(self.delTab)
 
         self.show()
 
-    def test(self, signal):
+    def createTab(self, filename, content):
+        newTab = tabEditor(parent=self.tabWidget, filename=filename, content=content)
+        self.tabs.append(newTab)
+
+    def delTab(self, index):
+        widget = self.tabWidget.widget(index)
+        if widget is not None:
+            widget.deleteLater()
+        self.tabWidget.removeTab(index)
+        self.tabs[index].deleteLater()
+        del(self.tabs[index])
+
+    def checkFileTabIsOpen(self, filename):
+        returnText = "False"
+        for i in range(0,len(self.tabs)):
+            tabText = str(self.tabWidget.tabText(i)).replace("&","")
+            # print(tabText)
+            # print(filename)
+            if tabText == filename:
+                # print("Found file")
+                returnText = "True"
+                return i,returnText
+        return 0, returnText
+
+    def tabHandler(self, signal):
         file_path = self.treeView.model().filePath(signal)
-
-        try:
-            if os.path.isfile(file_path):
-                with open(file_path, 'r+') as currentFile:
-                    self.QSciEditor.setText(currentFile.read())
-                    _translate = QtCore.QCoreApplication.translate
-                    self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab1), _translate("MainWindow", file_path.split("/")[-1] ))
-
-        except Exception as e:
-            print(e)
+        filename = file_path.split("/")[-1]
+        index, result = self.checkFileTabIsOpen(filename)
+        if result == "False":
+            try:
+                if os.path.isfile(file_path):
+                    with open(file_path, 'r+') as currentFile:
+                        self.createTab(filename, currentFile.read())
+                        self.tabWidget.setCurrentIndex(len(self.tabs)-1)
+            except Exception as e:
+                print(e)
+        else:
+            self.tabWidget.setCurrentIndex(index)
 
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
 
     myWindow = MyWindowClass()
-    myWindow.setWindowTitle("NeBULA for " +
+    myWindow.setWindowTitle("CWAG for " +
                             platform.system() + " v." + software_version)
+
+    myWindow.runButton.clicked.connect(lambda: myWindow.checkFileTabIsOpen("main.py"))
 
     # Start the window centered in screen
     # print (app.desktop().primaryScreen())
