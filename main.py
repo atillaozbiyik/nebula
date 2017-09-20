@@ -43,6 +43,8 @@ class MyWindowClass(QtWidgets.QMainWindow, Ui_MainWindow):
         self.treeView.setHeaderHidden(True)
         self.treeView.doubleClicked.connect(self.tabHandler)
 
+        # self.infoBox.resize(531,0)
+
         self.tabWidget.tabCloseRequested.connect(self.delTab)
 
         self.show()
