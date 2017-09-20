@@ -1,4 +1,5 @@
 import platform
+
 from astparser import AstParser
 
 if platform.python_version().startswith("2."):
@@ -8,7 +9,6 @@ if platform.python_version().startswith("2."):
 
 import sys
 import os
-from PyQt5 import QtCore, QtGui
 from PyQt5.QtGui import QStandardItem, QStandardItemModel
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QMainWindow, QMenu, QApplication, QFileSystemModel

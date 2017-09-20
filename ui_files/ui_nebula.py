@@ -2,7 +2,8 @@
 
 # Form implementation generated from reading ui file 'nebula.ui'
 #
-# Created by: PyQt5 UI code generator 5.5.1
+# Created: Tue Sep 19 21:06:36 2017
+#      by: PyQt5 UI code generator 5.2.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -138,6 +139,11 @@ class Ui_MainWindow(object):
         self.groupBox_3 = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox_3.setTitle("")
         self.groupBox_3.setObjectName("groupBox_3")
+        self.gridLayout_3 = QtWidgets.QGridLayout(self.groupBox_3)
+        self.gridLayout_3.setObjectName("gridLayout_3")
+        self.treeOutline = QtWidgets.QTreeView(self.groupBox_3)
+        self.treeOutline.setObjectName("treeOutline")
+        self.gridLayout_3.addWidget(self.treeOutline, 0, 0, 1, 1)
         self.mainLayout.addWidget(self.groupBox_3, 1, 2, 1, 1)
         self.groupBox_2 = QtWidgets.QGroupBox(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
@@ -165,7 +171,7 @@ class Ui_MainWindow(object):
         self.mainLayout.addWidget(self.groupBox_4, 2, 0, 1, 3)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 30))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
