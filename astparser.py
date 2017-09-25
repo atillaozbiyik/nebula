@@ -1,38 +1,55 @@
-from clang.cindex import Index, Config, CursorKind, TranslationUnit
+import os, platform
+if platform.python_version().startswith("2."):
+    print ("Only Python 3.x is supported!")
+    exit()
+
+from clang.cindex import Index, Config, CursorKind, TranslationUnit, SourceLocation
 from tools import debug
+from PyQt5.QtGui import QStandardItem, QStandardItemModel
+
+class QOutlineItem (QStandardItem):
+    location = SourceLocation()
+
+    def __init__(self, name):
+        super(QStandardItem, self).__init__(name)
+
 
 class AstParser:
 
     def __init__(self):
         # from ctypes.util import find_library
         # print(find_library("clang"))
-        Config.set_library_file("/usr/lib/llvm-3.9/lib/libclang-3.9.1.so")
-
-        # For Ubuntu 14.04:
-            # sudo ln -s /usr/lib/llvm-3.9/lib/libclang-3.9.1.so /usr/lib/x86_64-linux-gnu/libclang.so.1
+        if (os.path.exists("/usr/lib/llvm-3.9/lib/libclang-3.9.1.so")):
+            Config.set_library_file("/usr/lib/llvm-3.9/lib/libclang-3.9.1.so")
 
         self.index = Index.create()
-        # self.outline = []
 
-    # def __append_outline__(self, parent, ch):
-    #     print("Adding " + str(ch.spelling))
-    #     item = OutlineItem()
-    #
-    #     self.outline.append( (str(ch.spelling) , ch.get_children())  )
-    #
-    #     if ch.get_children() is not None:
-    #         for c in ch.get_children():
-    #             self.__append_outline__(ch, c)
+    def append(self, parent, node, kinds):
 
-    def get_outline(self, file):
-        tu = self.index.parse(None, [file])
+        for c in [c for c in node.get_children()]:
+            if c.kind in kinds:
+
+                if c.kind == CursorKind.STRUCT_DECL:
+                    pass
+
+                item = QOutlineItem(c.spelling)
+                item.location = c.location
+                item.setEditable(False)
+                parent.appendRow(item)
+                # Print out information about the node
+                debug('Found %s, (%s)  [line=%s, col=%s]' % (c.displayname, str(c.kind), c.location.line, c.location.column))
+
+                for gc in [c for c in c.get_children()]:
+                    self.append(item, gc, kinds)
+
+    def get_outline(self, file, kinds):
+        opts = ['-x', 'c-header', '-std=c++11', '-D__CODE_GENERATOR__']
+        tu = self.index.parse(file , opts)
         if not tu:
             debug("Unable to analyse file")
             return None
 
-        # children = [c for c in tu.cursor.get_children()]
-        #
-        # for c in children:
-        #     self.__append_outline__(children, c)
+        root = QStandardItemModel()
+        self.append (root, tu.cursor, kinds)
+        return root
 
-        return tu

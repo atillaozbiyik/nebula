@@ -1,20 +1,23 @@
-//#include <stdio.h>
-
+include <stdio.h>
+//
 int dummy_var;
-#define dummy_define;
+#define dummy_define
 
-#ifdef dummy_define:
-    printf("Dummy define defined");
+#ifdef dummy_define
+    printf ("Dummy define defined");
 #else
-    printf("Dummy define defined");
+    printf ("Dummy define is not defined");
 #endif
 
 // This is single line comment
+
 /* This is 
 multiline
 comment
 Block
 */
+
+int t6,t5,t3;
 
 union
 {
@@ -26,7 +29,7 @@ union
         unsigned char Byte3;
         unsigned char Byte4;
     } structsample;
-} ui32;
+} ui32= {0,0,0,0};
 
 int main()
 {
@@ -101,6 +104,6 @@ void main2()
 
 //Dummy Block
 {
-
-
+;
 }
+
