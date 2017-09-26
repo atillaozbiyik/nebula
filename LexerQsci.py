@@ -3,6 +3,9 @@ from PyQt5.Qsci import QsciScintilla, QsciLexerPython, QsciLexerCPP
 
 
 class Editor(QsciScintilla):
+
+    filename = ""
+
     def __init__(self, parent=None):
         super(Editor, self).__init__(parent)
         font = QtGui.QFont()

@@ -12,11 +12,11 @@ class tabEditor(QtWidgets.QWidget):
         self._filepath = filepath
         filename = filepath.split("/")[-1]
 
-        QSciEditor = Editor()
+        self.QSciEditor = Editor()
         # self.gridLayout.addWidget(self.QSciEditor)
         editorLayout = QtWidgets.QGridLayout(self)
         editorLayout.setObjectName("editorLayout")
-        editorLayout.addWidget(QSciEditor)
-        QSciEditor.setText(content)
+        editorLayout.addWidget(self.QSciEditor)
+        self.QSciEditor.setText(content)
         _translate = QtCore.QCoreApplication.translate
         parent.setTabText(parent.indexOf(self), _translate("MainWindow", filename ))
