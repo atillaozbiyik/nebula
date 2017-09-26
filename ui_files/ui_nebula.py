@@ -168,6 +168,11 @@ class Ui_MainWindow(object):
         self.structureBox = QtWidgets.QGroupBox(self.splitter_2)
         self.structureBox.setTitle("")
         self.structureBox.setObjectName("structureBox")
+        self.gridLayout_7 = QtWidgets.QGridLayout(self.structureBox)
+        self.gridLayout_7.setObjectName("gridLayout_7")
+        self.treeOutline = QtWidgets.QTreeView(self.structureBox)
+        self.treeOutline.setObjectName("treeOutline")
+        self.gridLayout_7.addWidget(self.treeOutline, 0, 0, 1, 1)
         self.gridLayout_6.addWidget(self.splitter_2, 0, 0, 1, 1)
         self.workSpaceBox = QtWidgets.QGroupBox(self.splitter_3)
         self.workSpaceBox.setObjectName("workSpaceBox")
@@ -268,6 +273,10 @@ class Ui_MainWindow(object):
         self.stackedWidget.setObjectName("stackedWidget")
         self.page = QtWidgets.QWidget()
         self.page.setObjectName("page")
+        self.pageLayout = QtWidgets.QGridLayout(self.page)
+        self.pageLayout.setContentsMargins(0, 0, 0, 0)
+        self.pageLayout.setSpacing(0)
+        self.pageLayout.setObjectName("pageLayout")
         self.stackedWidget.addWidget(self.page)
         self.page_2 = QtWidgets.QWidget()
         self.page_2.setObjectName("page_2")
@@ -294,7 +303,7 @@ class Ui_MainWindow(object):
         self.gridLayout_5.addWidget(self.mainContainer, 1, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 859, 30))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 859, 26))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
@@ -380,4 +389,4 @@ class Ui_MainWindow(object):
         self.actionRun_Options.setText(_translate("MainWindow", "Run Options"))
         self.actionDebug_Options.setText(_translate("MainWindow", "Debug Options"))
 
-import ui_files.rsrcs_rc
+import rsrcs_rc

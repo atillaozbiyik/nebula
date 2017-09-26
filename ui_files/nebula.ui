@@ -311,6 +311,11 @@ border-radius:0px;
               <property name="title">
                <string/>
               </property>
+              <layout class="QGridLayout" name="gridLayout_7">
+               <item row="0" column="0">
+                <widget class="QTreeView" name="treeOutline"/>
+               </item>
+              </layout>
              </widget>
             </widget>
            </item>
@@ -458,7 +463,16 @@ QStackedWidget{
                </item>
                <item row="1" column="0" colspan="6">
                 <widget class="QStackedWidget" name="stackedWidget">
-                 <widget class="QWidget" name="page"/>
+                 <widget class="QWidget" name="page">
+                  <layout class="QGridLayout" name="pageLayout">
+                   <property name="margin">
+                    <number>0</number>
+                   </property>
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                  </layout>
+                 </widget>
                  <widget class="QWidget" name="page_2"/>
                 </widget>
                </item>
@@ -526,7 +540,7 @@ QStackedWidget{
      <x>0</x>
      <y>0</y>
      <width>859</width>
-     <height>30</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
