@@ -11,6 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from ui_files.ui_nebula import Ui_MainWindow
 # from LexerQsci import Editor
 from tabClass import tabEditor
+from embeddedTerminal import embterminal
 """TODO
 - add git
 - add minimap
@@ -43,14 +44,22 @@ class MyWindowClass(QtWidgets.QMainWindow, Ui_MainWindow):
         self.treeView.setHeaderHidden(True)
         self.treeView.doubleClicked.connect(self.tabHandler)
 
-        # self.infoBox.resize(531,0)
+        self.terminal = embterminal(self.pageLayout)
+        # self.process = QtCore.QProcess(self)
+        # self.terminal = QtWidgets.QWidget(self)
+        # self.pageLayout.addWidget(self.terminal)
+        # self.process.start('xterm', ['-into', str(self.terminal.winId())])
 
+        # self.page.setLayout(layout)
+
+        # self.infoBox.resize(531,0)
+        # self.pageLayout
         self.tabWidget.tabCloseRequested.connect(self.delTab)
 
         self.show()
 
     def createTab(self, filename, content):
-        newTab = tabEditor(parent=self.tabWidget, filename=filename, content=content)
+        newTab = tabEditor(parent=self.tabWidget, filepath=filename, content=content)
         self.tabs.append(newTab)
 
     def delTab(self, index):
@@ -81,7 +90,7 @@ class MyWindowClass(QtWidgets.QMainWindow, Ui_MainWindow):
             try:
                 if os.path.isfile(file_path):
                     with open(file_path, 'r+') as currentFile:
-                        self.createTab(filename, currentFile.read())
+                        self.createTab(file_path, currentFile.read())
                         self.tabWidget.setCurrentIndex(len(self.tabs)-1)
             except Exception as e:
                 print(e)

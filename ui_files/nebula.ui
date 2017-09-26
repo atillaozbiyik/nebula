@@ -45,15 +45,16 @@ color:white;
       <property name="styleSheet">
        <string notr="true">QPushButton:hover{
        color:rgb(224,224,224);
-		background:rgb(24,39,45);
+		background:rgb(240,240,240);
 }
 QPushButton {
         border:1px solid rgb(64,75,80);
         border-radius: 2px;
         padding: 5px 5px 2px 5px;
-        background:rgb(44,59,65);
+        background:rgb(220,220,220);
         color: rgb(240,240,240);
         height: 30px;
+	    width:30px;
 }
 QPushButton:pressed {
         background: rgb();
@@ -76,19 +77,70 @@ QPushButton:disabled{
        <string/>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QPushButton" name="fileButton">
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="rsrcs.qrc">
+           <normaloff>:/images/resources/file.png</normaloff>:/images/resources/file.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="folderButton">
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="rsrcs.qrc">
+           <normaloff>:/images/resources/folder.png</normaloff>:/images/resources/folder.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="saveButton">
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="rsrcs.qrc">
+           <normaloff>:/images/resources/save.png</normaloff>:/images/resources/save.png</iconset>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QPushButton" name="runButton">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
          <property name="maximumSize">
           <size>
-           <width>100</width>
+           <width>16777215</width>
            <height>16777215</height>
           </size>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
          </property>
          <property name="text">
           <string/>
@@ -108,16 +160,19 @@ QPushButton:disabled{
        <item>
         <widget class="QPushButton" name="cleanButton">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
          <property name="maximumSize">
           <size>
-           <width>100</width>
+           <width>16777215</width>
            <height>16777215</height>
           </size>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
          </property>
          <property name="text">
           <string/>
@@ -137,16 +192,19 @@ QPushButton:disabled{
        <item>
         <widget class="QPushButton" name="installButton">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
          <property name="maximumSize">
           <size>
-           <width>100</width>
+           <width>16777215</width>
            <height>16777215</height>
           </size>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
          </property>
          <property name="text">
           <string/>
@@ -166,16 +224,19 @@ QPushButton:disabled{
        <item>
         <widget class="QPushButton" name="debugButton">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
          <property name="maximumSize">
           <size>
-           <width>100</width>
+           <width>16777215</width>
            <height>16777215</height>
           </size>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
          </property>
          <property name="text">
           <string/>
@@ -458,7 +519,19 @@ QStackedWidget{
                </item>
                <item row="1" column="0" colspan="6">
                 <widget class="QStackedWidget" name="stackedWidget">
-                 <widget class="QWidget" name="page"/>
+                 <property name="currentIndex">
+                  <number>0</number>
+                 </property>
+                 <widget class="QWidget" name="page">
+                  <layout class="QGridLayout" name="pageLayout">
+                   <property name="margin">
+                    <number>0</number>
+                   </property>
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                  </layout>
+                 </widget>
                  <widget class="QWidget" name="page_2"/>
                 </widget>
                </item>
