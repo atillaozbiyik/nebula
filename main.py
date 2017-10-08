@@ -104,7 +104,19 @@ class MyWindowClass(QMainWindow, Ui_MainWindow):
         # self.infoBox.resize(531,0)
         # self.pageLayout
         self.tabWidget.tabCloseRequested.connect(self.delTab)
+        self.shortcuts = []
+        for key in self.keybindings:
+            self.shortcuts.append (QShortcut(self))
+            self.shortcuts[-1].setKey(key[0])
+            self.shortcuts[-1].activated.connect(getattr(self, key[1]))
 
+        self.treeOutline.title = "Outline View"  # Probably treeOutline will be a discrete class soon..
+        self.treeOutline.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.treeOutline.customContextMenuRequested.connect(self.openMenu)
+        self.treeOutline.clicked.connect(self.outline_clicked)
+        self.cleanButton.clicked.connect(self.clean)
+        # self.gridLayout.addWidget(self.QSciEditor)
+        self.ast = AstParser()
         self.show()
 
     def createTab(self, filename, content):
@@ -141,24 +153,12 @@ class MyWindowClass(QMainWindow, Ui_MainWindow):
                     with open(file_path, 'r+') as currentFile:
                         self.createTab(file_path, currentFile.read())
                         self.tabWidget.setCurrentIndex(len(self.tabs)-1)
+                        self.refresh_outline()
             except Exception as e:
                 print(e)
         else:
             self.tabWidget.setCurrentIndex(index)
-        self.treeOutline.title = "Outline View"  # Probably treeOutline will be a discrete class soon..
-        self.treeOutline.setContextMenuPolicy(Qt.CustomContextMenu)
-        self.treeOutline.customContextMenuRequested.connect(self.openMenu)
-        self.treeOutline.clicked.connect(self.outline_clicked)
 
-        self.cleanButton.clicked.connect(self.clean)
-        # self.gridLayout.addWidget(self.QSciEditor)
-        self.ast = AstParser()
-        self.show()
-
-        for key in self.keybindings:
-            self.shortcut = QShortcut(self)
-            self.shortcut.setKey(key[0])
-            self.shortcut.activated.connect(getattr(self, key[1]))
 
     def save(self):
         file = open(self.tabs[self.tabWidget.currentIndex()].QSciEditor.text().filename, "w")
@@ -194,7 +194,7 @@ class MyWindowClass(QMainWindow, Ui_MainWindow):
         # kinds.append(CursorKind.STRUCT_DECL)
         kinds.append(CursorKind.FIELD_DECL)
 
-        outline = self.ast.get_outline(self.self.tabs[self.tabWidget.currentIndex()].QSciEditor.filename, kinds)
+        outline = self.ast.get_outline(self.tabs[self.tabWidget.currentIndex()]._filepath, kinds)
         self.treeOutline.setModel(outline)
 
 

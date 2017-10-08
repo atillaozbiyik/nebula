@@ -23,7 +23,8 @@ class AstParser:
         # if (os.path.exists("/usr/lib/llvm-3.9/lib/libclang-3.9.1.so")):
         #     Config.set_library_file("/usr/lib/llvm-3.9/lib/libclang-3.9.1.so")
         # if (os.path.exists("/usr/lib/x86_64-linux-gnu/libclang-3.9.so")):
-        Config.set_library_file("/usr/lib/x86_64-linux-gnu/libclang-3.9.so")
+        # Config.set_library_file("/usr/lib/x86_64-linux-gnu/libclang-3.9.so")
+        Config.library_file = "/usr/lib/x86_64-linux-gnu/libclang-3.9.so"
         # Config.set_library_file(find_library('clang'))
 
         self.index = Index.create()
@@ -48,7 +49,7 @@ class AstParser:
 
     def get_outline(self, file, kinds):
         opts = ['-x', 'c-header', '-std=c++11', '-D__CODE_GENERATOR__']
-        tu = self.index.parse(file , opts)
+        tu = self.index.parse(file, opts)
         if not tu:
             debug("Unable to analyse file")
             return None
@@ -56,4 +57,3 @@ class AstParser:
         root = QStandardItemModel()
         self.append (root, tu.cursor, kinds)
         return root
-
