@@ -15,45 +15,11 @@ from ui_files.ui_nebula import Ui_MainWindow
 from tabClass import tabEditor
 from embeddedTerminal import embterminal
 from tools import debug
+
 """TODO
-- add git
-- add minimap
-- add lexer
-- add file tracker
 =======
 from LexerQsci import Editor
 from tools import debug
-
-TODO
-- Save & CTRL+S!
-- Auto code completion
-- Ctrl-Z
-- Compiler integration
-    Compiler parameters
-    Makefile generator
-    Import Makefile?
-    Import other IDE project files
-- Debugger integration
-    GDB server integration
-    Breakpoints
-    Stop on change
-    Variable view
-    Expression evaluation
-- Block selection
-- Customisation of almost everything :
-    Colors, fonts, icons, themes?,
-    Custom scripts/Buttons, external plugin support by python scripting?)
-- Version Control support
-- Minimap
-- Lexer/AST
-- Add file tracker
-- Automatic update
-- Program Flasher
-- Linter
-- Simple GUI Designer ?
-- Variable refacor/rename
-- File and project templates
-- Move autocomplete source to clang from Qscintilla
 """
 
 software_version = "0.1"
