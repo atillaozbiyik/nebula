@@ -36,7 +36,7 @@ class Editor(QsciScintilla):
         self.setAutoCompletionReplaceWord(False)
         # Set the autocompletion source to be the words not only in document but all
         self.setAutoCompletionSource(QsciScintilla.AcsAll)
-        # Set the autocompletion dialog to appear as soon as 1 character is typed
+        # Set the autocompletion dialog to appear as soon as 3 character is typed
         self.setAutoCompletionThreshold(3)
 
 
