@@ -7,7 +7,7 @@ Not ready yet.
 **Roadmap:**
 
 - [x] Qscintilla implementation
-- [ ] Save & CTRL+S!
+- [x] Save & CTRL+S!
 - [ ] Auto code completion
 - [ ] Ctrl-Z
 - Compiler integration
