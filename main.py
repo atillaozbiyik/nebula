@@ -128,11 +128,12 @@ class MyWindowClass(QMainWindow, Ui_MainWindow):
 
 
     def save(self):
-        file = open(self.tabs[self.tabWidget.currentIndex()].QSciEditor.text().filename, "w")
-        file.write(self.tabs[self.tabWidget.currentIndex()].QSciEditor.text())
+        current_tab = self.tabs[self.tabWidget.currentIndex()]
+        file = open(current_tab._filepath, "w")
+        file.write(current_tab.QSciEditor.text())
         file.close()
         self.refresh_outline()
-        debug(self.tabs[self.tabWidget.currentIndex()].QSciEditor.text().filename + " is saved..." )
+        debug(current_tab._filepath + " is saved..." )
 
     def quit(self):
         debug("quitting..." )
