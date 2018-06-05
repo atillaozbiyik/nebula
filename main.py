@@ -2,6 +2,7 @@ from astparser import AstParser
 import platform
 import sys
 import os
+sys.path.insert(0,"./ui_files/")
 
 from PyQt5.QtCore import Qt, QEvent, pyqtSignal
 from PyQt5.QtGui import QKeySequence
