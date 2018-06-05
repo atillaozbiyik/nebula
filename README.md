@@ -8,7 +8,7 @@ Not ready yet.
 
 - [x] Qscintilla implementation
 - [x] Save & CTRL+S!
-- [ ] Auto code completion
+- [x] Auto code completion
 - [ ] Ctrl-Z
 - Compiler integration
     - [ ] Compiler parameters

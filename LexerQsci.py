@@ -30,6 +30,16 @@ class Editor(QsciScintilla):
         #
         self.setBraceMatching(QsciScintilla.SloppyBraceMatch)
 
+        # Set the autocompletions to case INsensitive
+        self.setAutoCompletionCaseSensitivity(False)
+        # Set the autocompletion to not replace the word to the right of the cursor
+        self.setAutoCompletionReplaceWord(False)
+        # Set the autocompletion source to be the words not only in document but all
+        self.setAutoCompletionSource(QsciScintilla.AcsAll)
+        # Set the autocompletion dialog to appear as soon as 1 character is typed
+        self.setAutoCompletionThreshold(3)
+
+
         # Current line visible with special background color
         self.setCaretLineVisible(True)
         self.setCaretLineBackgroundColor(QtGui.QColor("#ffe4e4"))
